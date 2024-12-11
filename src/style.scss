@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+	--bgColor: white;	
+	--moduleColor: #3a0ca3;
+	--borderColor: #4361ee;
+	--hlColor: #7209b7;
+	--moduleRadius: 15px;
+	--shadow: 0px 0px 10px rgba(0, 0, 0, 0.6)
+}
+
+@mixin BasicPage{
+	width: 80vw;
+	margin: 10px;
+	padding: 30px;
+	background-color: var(--moduleColor);
+	border-radius: var(--moduleRadius);
+	height: calc(100% - 80px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
+
+	.searchBar{
+		width: calc(100% - 30px);
+		padding: 15px 15px;
+		border-radius: var(--moduleRadius);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: var(--hlColor);
+		margin-bottom: 20px;
+	}
+}
+
+@mixin basicListItem{
+	margin: 5px 20px;
+	padding: 3px 20px;
+	width: calc(100% - 80px);
+	background-color: var(--hlColor);
+	color: white;
+	border-radius: var(--moduleRadius);
+	display: flex;
+	align-items: center;
+}
+
+body{
+	margin: 0px;
+	width: 100vw;
+	height: 100vh;
+	font-family: "Poppins", sans-serif;
+	color: white;
+}
+
+.ErrorPage{
+	background-color: tomato;
+	width: 100vw;
+	height: 100vh;
+	margin: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	h3{
+		margin: 0px;
+		transition: all .3s;
+		&:hover{
+			cursor: pointer;
+			transform: scale(1.1);
+			text-shadow: var(--shadow);
+		}
+	}
+}
+
+.NavBar{
+	color: white;
+	background-color: var(--moduleColor);
+	width: calc(100vw - 50px);
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 25px;
+
+	.Buttons{
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+}
+
+.Login{
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--bgColor);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	.loginForm{
+		background-color: var(--moduleColor);
+		width: 35vw;
+		height: 50vh;
+		padding: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--moduleRadius);
+		color: white;
+		border: 5px solid var(--borderColor);
+
+		h2{margin: 10px;}
+		h1{margin: 10px}
+	}
+}
+
+.Home{
+	height: calc(100vh - 70px);
+	width: 100vw;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: var(--bgColor);
+
+	.emptySpace{
+		@include BasicPage;
+	}
+
+	.LatPanel{
+		width: 20vw;
+		margin: 10px;
+		padding: 30px;
+		background-color: var(--moduleColor);
+		border-radius: var(--moduleRadius);
+		height: calc(100% - 80px);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+}
