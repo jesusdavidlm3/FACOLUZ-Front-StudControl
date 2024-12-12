@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { WarningOutlined } from '@ant-design/icons'
+import React from 'react'
+
 
 const ErrorPage = () => {
 

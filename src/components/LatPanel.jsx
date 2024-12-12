@@ -2,6 +2,8 @@ import { useContext, useState } from 'react'
 import { appContext } from '../context/appContext'
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
+import React from 'react'
+
 
 const LatPanel = () => {
 

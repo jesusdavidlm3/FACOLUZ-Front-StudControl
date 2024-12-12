@@ -2,6 +2,7 @@ import { Button } from 'antd'
 import { useContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { appContext } from  '../context/appContext'
+import React from 'react'
 
 const NavBar = () => {
 

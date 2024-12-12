@@ -7,6 +7,7 @@ import Root from './pages/Root'
 import ErrorPage from './pages/ErrorPage'
 import Login from './pages/Login'
 import Home from './pages/Home'
+import React from 'react'
 
 const router = createBrowserRouter([{
   path: '/',

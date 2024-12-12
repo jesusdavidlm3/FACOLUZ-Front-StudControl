@@ -1,5 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import LatPanel from '../components/LatPanel'
+import React from 'react'
+
 
 const Home = () => {
 
