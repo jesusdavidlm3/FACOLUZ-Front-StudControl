@@ -11,12 +11,8 @@ export async function login(data){
 	return res
 }
 
-export async function getAllSections(){
-	const res = await http.get('api/getAllSections', token, null)
-}
-
-export async function createSection(data){
-	const res = await http.post('api/createSection', token, data)
+export async function createUser(data) {
+	return await http.post('api/createUser', token, data)
 }
 
 export async function assignTeacher(data) {
