@@ -1,8 +1,8 @@
 {
-  "name": "luz-odontologia-controlestudiosfront",
-  "productName": "luz-odontologia-controlestudiosfront",
+  "name": "facoluz-front-studcontrol",
+  "productName": "FACOLUZ-Front-StudControl",
   "version": "1.0.0",
-  "description": "luz-odontologia-controlestudiosfront",
+  "description": "FACOLUZ-Front-StudControl",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
