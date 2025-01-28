@@ -8,6 +8,9 @@ import ErrorPage from './pages/ErrorPage'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import React from 'react'
+import Sections from './pages/Sections'
+import Section from './pages/Section'
+import Asignature from './pages/Asignature'
 
 const router = createBrowserRouter([{
   path: '/',
@@ -18,7 +21,17 @@ const router = createBrowserRouter([{
     element: <Login/>
   },{
     path: '/home',
-    element: <Home />
+    element: <Home />,
+    children: [{
+      path: "/home/sections",
+      element: <Sections/>
+    },{
+      path: "/home/section",
+      element: <Section/>
+    },{
+      path: "/home/asignature",
+      element: <Asignature/>
+    }]
   }]
 }])
 

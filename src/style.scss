@@ -141,4 +141,70 @@ body{
 		align-items: center;
 		gap: 20px;
 	}
+
+	.Sections{
+		@include BasicPage;
+		
+
+		.listContainer{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 25px;
+			justify-content: center;
+
+			.listItem{
+				background-color: var(--hlColor);
+				width: 250px;
+				height: 250px;
+				border-radius: 15px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all ease .2s;
+
+				h2{font-size: 40px;}
+
+				&:hover{
+					transform: scale(1.1);
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	.Section{
+		@include BasicPage;
+
+		.container{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-evenly;
+
+			.listItem{
+				height: 70%;
+				background-color: var(--hlColor);
+				border-radius: 15px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				padding: 15px;
+				transition: all ease .3s;
+
+				&:hover{
+					cursor: pointer;
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+
+	.Asignature{
+		@include BasicPage;
+		
+	}
 }
