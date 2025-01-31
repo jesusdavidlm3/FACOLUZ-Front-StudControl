@@ -11,7 +11,9 @@ const Home = () => {
 		<div className='Home'>
 			<LatPanel />
 			<Outlet/>
-			{location.pathname == '/home' && <div className='emptySpace'/>}
+			{location.pathname == '/home' && <div className='emptySpace'>
+				<h1 className='purple'>Bienvenido</h1>
+			</div>}
 		</div>
 	)
 }

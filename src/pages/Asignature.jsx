@@ -7,7 +7,7 @@ const Asignature = () => {
 
     return(
         <div className="Asignature">
-            <h1>Materia: {selectedAsignature}, Seccion: {selectedSection}</h1>
+            <h1 className="purple">Materia: {selectedAsignature}, Seccion: {selectedSection}</h1>
         </div>
     )
 } 

@@ -18,7 +18,7 @@ const Sections = () => {
     
     return(
         <div className="Sections">
-            <h1>Secciones Disponibles</h1>
+            <h1 className="purple">Secciones Disponibles</h1>
             <div className="listContainer">
                 {aviableSections.map(item => (
                     <div key={item} className="listItem" onClick={() => {setSelectedSection(item), navigate("/home/section")}}>

@@ -9,7 +9,7 @@ const Section = () => {
 
     return(
         <div className="Section">
-            <h1>Materias Disponibles</h1>
+            <h1 className="purple">Materias Disponibles</h1>
             <h2>Seccion: {selectedSection}</h2>
             <div className="container">
                 <div className="listItem" onClick={() => {setSelectedAsignature("pp3"), navigate("/home/asignature")}}>

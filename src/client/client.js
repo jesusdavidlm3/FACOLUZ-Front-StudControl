@@ -22,3 +22,7 @@ export async function assignTeacher(data) {
 export async function assignStudents(data) {
 	const res = await http.post('api/assignStudents', token, data)
 }
+
+export async function getSectionInfo(data) {
+	const res = await http.get('api/getSectioninfo',token, data)
+}

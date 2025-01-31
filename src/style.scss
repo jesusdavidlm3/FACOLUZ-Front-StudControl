@@ -3,23 +3,26 @@
 :root{
 	--bgColor: white;	
 	--moduleColor: #3a0ca3;
+	--workAreaColor: #1f0261;
 	--borderColor: #4361ee;
 	--hlColor: #7209b7;
 	--moduleRadius: 15px;
-	--shadow: 0px 0px 10px rgba(0, 0, 0, 0.6)
+	--shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+	--navBarHeight: calc(70px - 2px);
 }
 
 @mixin BasicPage{
-	width: 80vw;
-	margin: 10px;
+	width: calc(85% - 60px);
 	padding: 30px;
-	background-color: var(--moduleColor);
-	border-radius: var(--moduleRadius);
-	height: calc(100% - 80px);
+	background-image: url('./img/fondo.png');
+	// background-color: var(--workAreaColor);
+	height: calc (100% - var(--navBarHeight));
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: start;
+
+	.purple{color: var(--moduleColor);}
 
 	.searchBar{
 		width: calc(100% - 30px);
@@ -77,16 +80,27 @@ body{
 	color: white;
 	background-color: var(--moduleColor);
 	width: calc(100vw - 50px);
-	height: 70px;
+	height: var(--navBarHeight);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0px 25px;
+	border-bottom: 2px solid white;
 
 	.Buttons{
 		display: flex;
 		align-items: center;
 		gap: 10px;
+	}
+
+	.Info{
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		img{
+			width: 45px;
+		}
 	}
 }
 
@@ -118,28 +132,32 @@ body{
 }
 
 .Home{
-	height: calc(100vh - 70px);
+	height: calc(100vh - 72px);
 	width: 100vw;
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 	background-color: var(--bgColor);
 
 	.emptySpace{
 		@include BasicPage;
+		
+		h1{font-size: 100px;}
 	}
 
 	.LatPanel{
-		width: 20vw;
-		margin: 10px;
+		width: 15%;
 		padding: 30px;
-		background-color: var(--moduleColor);
-		border-radius: var(--moduleRadius);
-		height: calc(100% - 80px);
+		background-color: white;
+		height: calc(100% - var(--navBarHeight));
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		gap: 20px;
+		border-right: 2px solid white; 
+
+		img{
+			width: 200px;
+			align-self: center
+		}
 	}
 
 	.Sections{
@@ -154,7 +172,8 @@ body{
 			justify-content: center;
 
 			.listItem{
-				background-color: var(--hlColor);
+				background-color: var(--moduleColor);
+				border: 3px solid white;
 				width: 250px;
 				height: 250px;
 				border-radius: 15px;
@@ -186,7 +205,8 @@ body{
 
 			.listItem{
 				height: 70%;
-				background-color: var(--hlColor);
+				background-color: var(--moduleColor);
+				border: 3px solid white;
 				border-radius: 15px;
 				display: flex;
 				flex-direction: column;
@@ -205,6 +225,9 @@ body{
 
 	.Asignature{
 		@include BasicPage;
-		
+	}
+
+	.CheckInfo{
+		@include BasicPage;
 	}
 }

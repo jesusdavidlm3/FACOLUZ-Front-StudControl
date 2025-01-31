@@ -11,6 +11,7 @@ import React from 'react'
 import Sections from './pages/Sections'
 import Section from './pages/Section'
 import Asignature from './pages/Asignature'
+import CheckInfo from './pages/CheckInfo'
 
 const router = createBrowserRouter([{
   path: '/',
@@ -31,6 +32,9 @@ const router = createBrowserRouter([{
     },{
       path: "/home/asignature",
       element: <Asignature/>
+    },{
+      path: "/home/checkInfo",
+      element: <CheckInfo/>
     }]
   }]
 }])
