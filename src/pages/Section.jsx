@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { appContext } from "../context/appContext";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +6,14 @@ const Section = () => {
 
     const {selectedSection, setSelectedAsignature} = useContext(appContext)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        getSectionData()
+    }, [])
+
+    async function getSectionData() {
+        
+    }
 
     return(
         <div className="Section">

@@ -33,7 +33,6 @@ export const CreateStudentModal = ({open, onCancel}) => {
                 type: 'success',
                 content: 'Estudiante creado con exito'
             })
-            updateList()
             onCancel()
         }else{
             setLoading(false)
