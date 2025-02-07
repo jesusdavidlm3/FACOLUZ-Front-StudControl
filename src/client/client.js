@@ -17,7 +17,7 @@ export async function createUser(data) {
 }
 
 export async function deleteUser(userId) {
-	const res = await http.delete(`api/deleteUser/${userId}`)
+	const res = await http.delete(`api/deleteUser/${userId}`, token)
 	return res
 }
 
@@ -30,32 +30,37 @@ export async function assignTeacher(data) {
 	return res
 }
 
-export async function assignStudents(data) {
-	const res = await http.post('api/assignStudents', token, data)
+export async function asignIntoAsignature(data) {
+	const res = await http.post('api/asignIntoAsignature', token, data)
 	return res
 }
 
-export async function getSectionInfo(data) {
-	const res = await http.get('api/getSectioninfo',token, data)
+export async function getSectionInfo(section) {
+	const res = await http.get(`api/getSectioninfo/${section}`,token)
 	return res
 }
 
 export async function getAsignatureInfo(section, asignature) {
-	const res = await http.get(`api/getAsignatureinfo/${section}/${asignature}`)
+	const res = await http.get(`api/getAsignatureinfo/${section}/${asignature}`, token)
 	return res
 }
 
 export async function clearAllAsignatures() {
-	const res = await http.delete('api/clearAllAsignatures')
+	const res = await http.delete('api/clearAllAsignatures', token)
 	return res
 }
 
 export async function clearAsignature(asignature) {
-	const res = await http.delete(`api/clearAsignature/${asignature}`)
+	const res = await http.delete(`api/clearAsignature/${asignature}`, token)
 	return res
 }
 
 export async function getInfoByIdentification(identification){
-	const res = await http.get(`api/getInfoByIdentification/${identification}`)
+	const res = await http.get(`api/getInfoByIdentification/${identification}`, token)
+	return res
 }
 
+export async function aviableStudentsList(searchParam) {
+	const res = await http.get(`api/aviableStudentsList/${searchParam}`, token)
+	return res
+}
