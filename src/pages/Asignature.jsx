@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { appContext } from '../context/appContext'
 import { Select, Input, Button } from 'antd'
-import { getAsignatureInfo, aviableStudentsList, asignIntoAsignature } from "../client/client";
+import { aviableStudentsList, asignIntoAsignature, getAsignatureList } from "../client/client";
 
 const Asignature = () => {
 
@@ -10,7 +10,7 @@ const Asignature = () => {
     const [aviableShowList, setAviableShowList] = useState([])
 
     useEffect(() => {
-        getAsignedStudents()
+        getAsignedlist()
     }, [])
 
     const searchStudents = async (e) => {
@@ -45,9 +45,9 @@ const Asignature = () => {
         }
     }
 
-    async function getAsignedStudents() {
-        const res = await getAsignatureInfo(selectedSection, selectedAsignature)
-        console.log(res)
+    async function getAsignedlist() {
+        const res = await getAsignatureList(selectedSection, selectedAsignature)
+        setAsignedList(res.data)
     }
 
     return(
@@ -58,7 +58,12 @@ const Asignature = () => {
                 <div className="list">
                     <h3>Asignados a la seccion</h3>
                     <Select placeholder='Asigne a un profesor' showSearch/>
-                    {/* {assignedList.map(item => ())} */}
+                    {assignedList.map(item => (
+                        <div className="listItem">
+                            <p>{item.name} {item.lastname} - {item.identification}</p>
+                            <Button variant="solid" color="danger" onClick={() => asignStudent(item)}>Retirar</Button>
+                        </div>
+                    ))}
                 </div>
 
                 <div className="list">  

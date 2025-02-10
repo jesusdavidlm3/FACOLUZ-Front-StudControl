@@ -40,8 +40,8 @@ export async function getSectionInfo(section) {
 	return res
 }
 
-export async function getAsignatureInfo(section, asignature) {
-	const res = await http.get(`api/getAsignatureinfo/${section}/${asignature}`, token)
+export async function getAsignatureList(section, asignature) {
+	const res = await http.get(`api/getAsignatureList/${section}/${asignature}`, token)
 	return res
 }
 
