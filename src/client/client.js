@@ -64,3 +64,18 @@ export async function aviableStudentsList(searchParam) {
 	const res = await http.get(`api/aviableStudentsList/${searchParam}`, token)
 	return res
 }
+
+export async function aviableTeachersList() {
+	const res = await http.get("api/aviableTeachersList", token)
+	return res
+}
+
+export async function removeFromAsignature(identification){
+	const res = await http.delete(`api/removeFromAsignature`, token, identification)
+	return res
+}
+
+export async function asignTeacher(data){
+	const res = await http.put("api/asignTeacher", token, data)
+	return res
+}
