@@ -7,6 +7,7 @@ const Asignature = () => {
 
     const {selectedSection, selectedAsignature, messageApi} = useContext(appContext)
     const [assignedList, setAsignedList] = useState([])
+    const [currentTeacher, setCurrentteacher] = useState()
     const [aviableShowList, setAviableShowList] = useState([])
     const [aviableTeachers, setAviableTeachers] = useState([])
 
@@ -66,7 +67,10 @@ const Asignature = () => {
 
     async function getAsignedlist() {
         const res = await getAsignatureList(selectedSection, selectedAsignature)
-        setAsignedList(res.data)
+        const teacher = res.data.find(item => item.type == 1)
+        const students = res.data.filter(item => item.type == 2)
+        setCurrentteacher(teacher.id)
+        setAsignedList(students)
     }
 
     async function getAviableTeacherlist() {
@@ -79,16 +83,15 @@ const Asignature = () => {
     }
 
     async function sendAsignTeacher(e){
-        console.log(e)
         const data = {
             section: selectedSection,
             asignature: selectedAsignature,
             userId: e,
-            role: 2
+            role: 1
         }
 
         const res = await asignTeacher(data)
-        console.log(res)
+        getAsignedlist()
     }
 
     return(
@@ -100,7 +103,7 @@ const Asignature = () => {
                     <h3>Asignados a la seccion</h3>
                     <Form>
                         <Form.Item label="Profesor: ">
-                            <Select placeholder='Seleccione a un profesor' showSearch options={aviableTeachers} onChange={e => sendAsignTeacher(e)}/>
+                            <Select value={currentTeacher} placeholder='Seleccione a un profesor' showSearch options={aviableTeachers} onChange={e => sendAsignTeacher(e)}/>
                         </Form.Item>
                     </Form>
                     {assignedList.map(item => (
