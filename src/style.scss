@@ -261,7 +261,23 @@ body{
 		}
 	}
 
-	.CheckInfo{
+	.CheckAsign{
 		@include BasicPage;
+
+		.infoContainer{
+			background-color: var(--moduleColor);
+			border-radius: var(--moduleRadius);
+			border: 3px solid white;
+			width: 50%;
+			height: 50%;
+			margin-top: 8%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+
+
+			h2{margin: 0;}
+		}
 	}
 }
