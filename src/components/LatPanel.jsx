@@ -18,7 +18,7 @@ const LatPanel = () => {
 				<Button size='large' type='primary' onClick={() => navigate('/home')} >Inicio</Button>
 				<Button size='large' type='primary' onClick={() => setCreateStudentModal(true)}>Registrar estudiante</Button>
 				<Button size='large' type='primary' onClick={() => navigate('/home/sections')} >Secciones</Button>
-				<Button size='large' type='primary' onClick={() => navigate('/home/checkInfo')} >Consultar informacion</Button>
+				<Button size='large' type='primary' onClick={() => navigate('/home/checkAsign')} >Consultar asignacion</Button>
 				<img src={logo} draggable={false} />
 			</div>
 
