@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
 import React from 'react'
 import { CreateStudentModal as CreateStudent } from './Modals'
-
+import logo from '../img/logo FACO.png'
 
 const LatPanel = () => {
 
@@ -15,10 +15,11 @@ const LatPanel = () => {
 	return(
 		<>
 			<div className='LatPanel'>
+				<Button size='large' type='primary' onClick={() => navigate('/home')} >Inicio</Button>
 				<Button size='large' type='primary' onClick={() => setCreateStudentModal(true)}>Registrar estudiante</Button>
-				<Button size='large' type='primary' onClick={() => navigate('/home')} >Opcion 2</Button>
-				<Button size='large' type='primary' onClick={() => navigate('/home')} >Opcion 3</Button>
-				<Button size='large' type='primary' onClick={() => navigate('/home/')}>Opcion 4</Button>
+				<Button size='large' type='primary' onClick={() => navigate('/home/sections')} >Secciones</Button>
+				<Button size='large' type='primary' onClick={() => navigate('/home/checkAsign')} >Consultar asignacion</Button>
+				<img src={logo} draggable={false} />
 			</div>
 
 			<CreateStudent

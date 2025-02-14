@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { appContext } from  '../context/appContext'
 import React from 'react'
+import logo from '../img/logo LUZ.png'
 
 const NavBar = () => {
 
@@ -19,6 +20,7 @@ const NavBar = () => {
 	return(
 		<div className='NavBar'>
 			<div className='Info'>
+				<img src={logo} draggable={false}/>
 				<h1>Bienvenido {userData.name} {userData.lastname}</h1>
 			</div>
 			<div className='Buttons'>
