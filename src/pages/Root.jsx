@@ -4,12 +4,13 @@ import { appContext } from '../context/appContext'
 import NavBar from '../components/NavBar'
 import React from 'react'
 
-
 const Root = () => {
 
 	const navigate = useNavigate()
 	const location = useLocation()
 	const { logged, contextHolder } = useContext(appContext)
+
+	console.log(location.pathname)
 
 	useEffect(() => {
 		navigate('/login')

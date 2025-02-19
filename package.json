@@ -1,6 +1,6 @@
 {
   "name": "facoluz-front-studcontrol",
-  "productName": "FACOLUZ-Front-StudControl Poduct",
+  "productName": "facoluz-front-studcontrol",
   "version": "1.0.0",
   "description": "FACOLUZ-Front-StudControl",
   "main": ".vite/build/main.js",
@@ -10,7 +10,9 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
-    "compile32": "npm run make -- --platform win32 --arch ia32"
+    "compile32": "npm run make -- --platform win32 --arch ia32",
+    "compiledeb": "npm run make -- --platform linux"
+
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.6.0",
@@ -37,5 +39,8 @@
     "electron-squirrel-startup": "^1.0.1",
     "react": "^19.0.0",
     "react-router-dom": "^7.0.2"
+  },
+  "packagerConfig": {
+    "executableName": "playground"
   }
 }
