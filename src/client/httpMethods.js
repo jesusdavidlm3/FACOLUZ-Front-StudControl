@@ -54,8 +54,14 @@ export class httpMethods {
 
 	async delete(apiAddress, token, value){
 		try{
-			let res = await axios.delete(`${url}/${apiAddress}/${value}`, {headers: {'Authorization': `Bearer ${token}`}})
-			return res
+			if(value){
+				let res = await axios.delete(`${url}/${apiAddress}/${value}`, {headers: {'Authorization': `Bearer ${token}`}})
+				return res
+			}else{
+				let res = await axios.delete(`${url}/${apiAddress}`, {headers: {'Authorization': `Bearer ${token}`}})
+				return res
+			}
+
 		}catch(err){
 			return(err)
 		}

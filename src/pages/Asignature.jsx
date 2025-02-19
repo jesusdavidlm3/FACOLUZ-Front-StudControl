@@ -67,8 +67,8 @@ const Asignature = () => {
 
     async function getAsignedlist() {
         const res = await getAsignatureList(selectedSection, selectedAsignature)
-        const teacher = res.data.find(item => item.type == 1)
-        const students = res.data.filter(item => item.type == 2)
+        const teacher = res.data.find(item => item.role == 1)
+        const students = res.data.filter(item => item.role == 2)
         setCurrentteacher(teacher.id)
         setAsignedList(students)
     }
@@ -91,6 +91,12 @@ const Asignature = () => {
         }
 
         const res = await asignTeacher(data)
+        if(res.status == 200){
+            messageApi.open({
+                type: "success",
+                content: "Docente asignado"
+            })
+        }
         getAsignedlist()
     }
 

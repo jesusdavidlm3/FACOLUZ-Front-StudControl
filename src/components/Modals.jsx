@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
-import { Modal, Input, Form, Select, Button, Space, InputNumber } from "antd";
+import { Modal, Input, Form, Select, Button, Space, InputNumber, message } from "antd";
 import * as lists from '../context/lists'
 import { appContext } from '../context/appContext';
-import { createUser } from '../client/client'
+import { createUser, clearAllAsignatures } from '../client/client'
 import { encrypt } from '../functions/hash'
 
 export const CreateStudentModal = ({open, onCancel}) => {
@@ -66,6 +66,43 @@ export const CreateStudentModal = ({open, onCancel}) => {
 				
 				<Input.Password disabled={loading} placeholder='Contraseña' onChange={(e) => setPassword(e.target.value)}/>
 			</div>
+        </Modal>
+    )
+}
+
+export const ConfirmClearAllSections = ({open, onCancel}) => {
+
+    const { messageApi } = useContext(appContext)
+    const [safeWord, setSafeWord] = useState("")
+
+    async function sendClear() {
+        const res = await clearAllAsignatures()
+        if(res.status == 200){
+            messageApi.open({
+                type: "success",
+                content: "Secciones limpiadas"
+            })
+            onCancel()
+        }else{
+            messageApi.open({
+                type: "error",
+                content: "ah ocurrido un error"
+            })
+        }
+    }
+
+    return(
+        <Modal
+            open={open}
+            title={`Escriba la palabra "borrar" para confirmar`}
+            destroyOnClose
+            onCancel={onCancel}
+            footer={[
+                <Button color='primary' variant='solid' disabled={safeWord != "borrar"} onClick={() => sendClear()}>Aceptar</Button>,
+                <Button color='danger' variant='solid' onClick={onCancel}>Cancelar</Button>
+            ]}
+        >
+            <Input onChange={e => setSafeWord(e.target.value)}></Input>
         </Modal>
     )
 }

@@ -46,7 +46,7 @@ export async function getAsignatureList(section, asignature) {
 }
 
 export async function clearAllAsignatures() {
-	const res = await http.delete('api/clearAllAsignatures', token)
+	const res = await http.delete('api/clearAllAsignatures', token, null)
 	return res
 }
 
