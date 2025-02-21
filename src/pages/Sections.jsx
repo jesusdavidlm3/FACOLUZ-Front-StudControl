@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { appContext } from "../context/appContext";
 import { Button } from 'antd'
 import { ConfirmClearAllSections } from '../components/Modals'
+import { routerContext } from "../context/routerContext";
 
 const Sections = () => {
 
     const [clearAllSectionsModal, setClearAllSectionsModal] = useState(false)
-    const navigate = useNavigate()
+    const {setView} = useContext(routerContext)
     const {setSelectedSection} = useContext(appContext)
 
     const aviableSections = [
@@ -24,7 +24,7 @@ const Sections = () => {
             <h1 className="purple">Secciones Disponibles</h1>
             <div className="listContainer">
                 {aviableSections.map(item => (
-                    <div key={item} className="listItem" onClick={() => {setSelectedSection(item), navigate("/home/section")}}>
+                    <div key={item} className="listItem" onClick={() => {setSelectedSection(item), setView("Section")}}>
                         <h2>{item}</h2>
                     </div>
                 ))}

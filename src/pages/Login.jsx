@@ -3,13 +3,13 @@ import { useContext, useState } from 'react'
 import { appContext } from '../context/appContext' 
 import { encrypt } from '../functions/hash'
 import { login } from '../client/client'
-import { useNavigate } from 'react-router-dom'
 import React from 'react'
+import { routerContext } from '../context/routerContext'
 
 
 const Login = () => {
 
-	const navigate = useNavigate()
+	const {setView} = useContext(routerContext)
 	const { setUserData, setLogged, messageApi } = useContext(appContext)
 	const [loading, setLoading] = useState(false)
 
@@ -26,7 +26,7 @@ const Login = () => {
 		if(res.status == 200){
 			setUserData(res.data)
 			setLogged(true)
-			navigate('/home')
+			setView('Home')
 		}else{
 			setLoading(false)
 			messageApi.open({
