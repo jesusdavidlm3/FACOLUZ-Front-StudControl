@@ -1,16 +1,14 @@
 import { Form, Input, Button } from 'antd'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { appContext } from '../context/appContext' 
 import { encrypt } from '../functions/hash'
 import { login } from '../client/client'
 import React from 'react'
 import { routerContext } from '../context/routerContext'
 
-
 const Login = () => {
-
 	const {setView} = useContext(routerContext)
-	const { setUserData, setLogged, messageApi } = useContext(appContext)
+	const { setUserData, setLogged, messageApi, contextHolder } = useContext(appContext)
 	const [loading, setLoading] = useState(false)
 
 	const submitLogin = async () => {
@@ -29,15 +27,17 @@ const Login = () => {
 			setView('Home')
 		}else{
 			setLoading(false)
-			messageApi.open({
-				type: 'error',
-				content: res.response.data
-			})
+			if(res.response.data == undefined){
+				messageApi.error("no hay conexion")
+			}else{
+				messageApi.error(res.response.data)
+			}
 		}
 	}
 
 	return(
 		<div className='Login'>
+			{contextHolder}
 			<Form disabled={loading} className='loginForm' onFinish={submitLogin}>
 				<h1>Control de estudios</h1>
 				<h2>Iniciar sesion</h2>

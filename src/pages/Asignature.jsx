@@ -5,7 +5,7 @@ import { aviableStudentsList, asignIntoAsignature, getAsignatureList, removeFrom
 
 const Asignature = () => {
 
-    const {selectedSection, selectedAsignature, messageApi} = useContext(appContext)
+    const {selectedSection, selectedAsignature, messageApi, contextHolder} = useContext(appContext)
     const [assignedList, setAsignedList] = useState([])
     const [currentTeacher, setCurrentteacher] = useState()
     const [aviableShowList, setAviableShowList] = useState([])
@@ -37,15 +37,9 @@ const Asignature = () => {
         console.log(res)
         if(res.status == 200){
             getAsignedlist()
-            messageApi.open({
-                type: "success",
-                content: res.data
-            })
+            messageApi.success(res.data)
         }else{
-            messageApi.open({
-                type: "error",
-                content: "ah ocurrido un error"
-            })
+            messageApi.error("ah ocurrido un error")
         }
     }
 
@@ -53,15 +47,9 @@ const Asignature = () => {
         const res = await removeFromAsignature(e.id)
         if(res.status == 200){
             getAsignedlist()
-            messageApi.open({
-                type: "success",
-                content: "Retirado con exito"
-            })
+            messageApi.success("Retirado con exito")
         }else{
-            messageApi.open({
-                type: "error",
-                content: "ah ocurrido un error"
-            })
+            messageApi.error("ah ocurrido un error")
         }
     }
 
@@ -92,16 +80,14 @@ const Asignature = () => {
 
         const res = await asignTeacher(data)
         if(res.status == 200){
-            messageApi.open({
-                type: "success",
-                content: "Docente asignado"
-            })
+            messageApi.success("Docente asignado")
         }
         getAsignedlist()
     }
 
     return(
         <div className="Asignature">
+            {contextHolder}
             <h1 className="purple">Materia: {selectedAsignature}, Seccion: {selectedSection}</h1>
             <h2 className="purple">Asignaciones</h2>
             <div className="container">
