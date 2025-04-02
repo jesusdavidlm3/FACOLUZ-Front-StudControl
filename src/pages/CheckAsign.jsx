@@ -20,7 +20,7 @@ const CheckInfo = () => {
             { info != null && (info.type == 1 || info.type == 2) ? (
                 <div className="infoContainer">
                     <h1>Informacion del {info.type == 1 && <>docente</>}{info.type == 2 && <>estudiante</>}</h1>
-                    <h2>Cedula: {info.identification} </h2>
+                    <h2>Cedula: {info.id} </h2>
                     <h2>Nombre: {info.name} {info.lastname} </h2>
                     <h2>
                         Es {info.type == 1 && <>profesor</>}{info.type == 2 && <>estudiante</>} en la seccion {info.section} de {info.asignature}

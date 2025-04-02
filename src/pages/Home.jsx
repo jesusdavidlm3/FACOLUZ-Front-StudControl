@@ -1,19 +1,16 @@
-import { Outlet, useLocation } from 'react-router-dom'
 import LatPanel from '../components/LatPanel'
-import React from 'react'
+import React, { useContext } from 'react'
+import { appContext } from '../context/appContext'
 
 
 const Home = () => {
 
-	const location = useLocation()
-
 	return(
 		<div className='Home'>
 			<LatPanel />
-			<Outlet/>
-			{location.pathname == '/home' && <div className='emptySpace'>
+			<div className='emptySpace'>
 				<h1 className='purple'>Bienvenido</h1>
-			</div>}
+			</div>
 		</div>
 	)
 }

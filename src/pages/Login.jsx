@@ -1,5 +1,5 @@
-import { Form, Input, Button } from 'antd'
-import { useContext, useEffect, useState } from 'react'
+import { Form, Input, Button, InputNumber } from 'antd'
+import { useContext, useState } from 'react'
 import { appContext } from '../context/appContext' 
 import { encrypt } from '../functions/hash'
 import { login } from '../client/client'
@@ -13,11 +13,11 @@ const Login = () => {
 
 	const submitLogin = async () => {
 		setLoading(true)
-		const identification = document.getElementById('identification').value
+		const id = document.getElementById('id').value
 		const password = document.getElementById('password').value
 
 		const data = {
-			identification: identification,
+			id: id,
 			passwordHash: await encrypt(password)
 		}
 		let res = await login(data)
@@ -41,8 +41,8 @@ const Login = () => {
 			<Form disabled={loading} className='loginForm' onFinish={submitLogin}>
 				<h1>Control de estudios</h1>
 				<h2>Iniciar sesion</h2>
-				<Form.Item name='identification'>
-					<Input placeholder='Identificacion'/>
+				<Form.Item name='id'>
+					<InputNumber placeholder='Identificacion'/>
 				</Form.Item>
 				<Form.Item name='password'>
 					<Input.Password placeholder='Contraseña'/>

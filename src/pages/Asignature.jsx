@@ -100,7 +100,7 @@ const Asignature = () => {
                     </Form>
                     {assignedList.map(item => (
                         <div className="listItem">
-                            <p>{item.name} {item.lastname} - {item.identification}</p>
+                            <p>{item.name} {item.lastname} - {item.id}</p>
                             <Button variant="solid" color="danger" onClick={() => removeStudent(item)}>Retirar</Button>
                         </div>
                     ))}
@@ -111,7 +111,7 @@ const Asignature = () => {
                     <Input.Search placeholder='Busque nombre o cedula' onSearch={(e => searchStudents(e))}/>
                     {aviableShowList.map(item => (
                         <div className="listItem">
-                            <p>{item.name} {item.lastname} - {item.identification}</p>
+                            <p>{item.name} {item.lastname} - {item.id}</p>
                             <Button variant="solid" color="primary" onClick={() => asignStudent(item)}>Asignar</Button>
                         </div>
                     ))}

@@ -3,6 +3,7 @@ import { appContext } from "../context/appContext";
 import { Button } from 'antd'
 import { ConfirmClearAllSections } from '../components/Modals'
 import { routerContext } from "../context/routerContext";
+import LatPanel from "../components/LatPanel";
 
 const Sections = () => {
 
@@ -20,6 +21,8 @@ const Sections = () => {
     ]
     
     return(
+        <>
+        <LatPanel/>
         <div className="Sections">
             <h1 className="purple">Secciones Disponibles</h1>
             <div className="listContainer">
@@ -32,6 +35,7 @@ const Sections = () => {
             <Button color="danger" variant="solid" onClick={() => setClearAllSectionsModal(true)}> Limpiar secciones </Button>
             <ConfirmClearAllSections onCancel={() => setClearAllSectionsModal(false)} open={clearAllSectionsModal} />
         </div>
+        </>
     )
 }
 
