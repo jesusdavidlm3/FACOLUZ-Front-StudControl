@@ -21,8 +21,6 @@ const Sections = () => {
     ]
     
     return(
-        <>
-        <LatPanel/>
         <div className="Sections">
             <h1 className="purple">Secciones Disponibles</h1>
             <div className="listContainer">
@@ -35,7 +33,6 @@ const Sections = () => {
             <Button color="danger" variant="solid" onClick={() => setClearAllSectionsModal(true)}> Limpiar secciones </Button>
             <ConfirmClearAllSections onCancel={() => setClearAllSectionsModal(false)} open={clearAllSectionsModal} />
         </div>
-        </>
     )
 }
 

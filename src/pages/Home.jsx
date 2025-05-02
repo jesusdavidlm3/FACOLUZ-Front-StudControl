@@ -7,10 +7,7 @@ const Home = () => {
 
 	return(
 		<div className='Home'>
-			<LatPanel />
-			<div className='emptySpace'>
-				<h1 className='purple'>Bienvenido</h1>
-			</div>
+			<h1 className='purple'>Bienvenido</h1>
 		</div>
 	)
 }

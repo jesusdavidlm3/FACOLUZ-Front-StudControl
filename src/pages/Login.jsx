@@ -39,7 +39,7 @@ const Login = () => {
 		<div className='Login'>
 			{contextHolder}
 			<Form disabled={loading} className='loginForm' onFinish={submitLogin}>
-				<h1>Control de estudios</h1>
+				<h1>Secretaria Docente</h1>
 				<h2>Iniciar sesion</h2>
 				<Form.Item name='id'>
 					<InputNumber placeholder='Identificacion'/>

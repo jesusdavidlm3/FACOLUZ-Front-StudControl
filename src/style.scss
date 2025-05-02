@@ -1,58 +1,130 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root{
-	--bgColor: white;	
-	--moduleColor: #3a0ca3;
-	--workAreaColor: #1f0261;
-	--borderColor: #4361ee;
-	--hlColor: #7209b7;
+	--bgColor: #660099;
+	--moduleColor: #ffffff;
+	--bgColorLogin: #ffffff;
+	--moduleColorLogin: #660099;
+	--listItemColor: #022C53;
 	--moduleRadius: 15px;
-	--shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
-	--navBarHeight: calc(70px - 2px);
+	--modulepPadding: 20px;
 }
 
-@mixin BasicPage{
-	width: calc(85% - 60px);
-	padding: 30px;
-	background-image: url('./img/fondo.png');
-	// background-color: var(--workAreaColor);
-	height: calc (100% - var(--navBarHeight));
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: start;
-
-	.purple{color: var(--moduleColor);}
-
-	.searchBar{
-		width: calc(100% - 30px);
-		padding: 15px 15px;
-		border-radius: var(--moduleRadius);
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		background-color: var(--hlColor);
-		margin-bottom: 20px;
-	}
-}
-
-@mixin basicListItem{
-	margin: 5px 20px;
-	padding: 3px 20px;
-	width: calc(100% - 80px);
-	background-color: var(--hlColor);
-	color: white;
+@mixin pageBasis{
+	background-color: white;
+	margin: 20px;
+	padding: 20px;
+	width: calc(93vw - 40px);
+	height: calc(100vh - 80px);
 	border-radius: var(--moduleRadius);
+	align-self: center;
+	justify-self: center;
+	align-items: center;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.Root{
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 }
 
 body{
 	margin: 0px;
+	background-color: var(--bgColor);
+	color: black;
+	font-family: "Poppins", sans-serif;
 	width: 100vw;
 	height: 100vh;
-	font-family: "Poppins", sans-serif;
-	color: white;
+}
+
+.LatPanel{
+	background-color: var(--moduleColor);	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: calc(7vw - 40px);
+	height: calc(100vh - 40px);
+	padding: 0 10px;	
+	margin: 20px 0px 20px 20px;
+	border-radius: var(--moduleRadius);
+	transition: all ease .4s;
+
+	&:hover{
+		width: calc(18vw - 40px);
+		height: calc(100vh - 40px);
+	}
+
+	&:hover .invisible{
+		display: block;
+	}
+
+	.invisible{
+		display: none;
+		transition: all ease .4s;
+	}
+
+	&:hover .Button{
+		width: 90%;
+	}
+
+	&:hover .Page{
+		width: calc(82vw - 40px);
+	}
+
+	&:hover .luzLogo{
+		transform: scale(.6);
+	}
+
+	&:hover .facoLogo{
+		transform: scale(.8);
+		top: 0;
+	}
+
+	Button{
+		background-color: #d9d9d9;
+		color: black;
+		border-radius: 5px;
+		margin: 1vh;
+		width: 90%;
+		justify-content: left;
+		width: 50px;
+		transition: all ease .4s;
+	}
+	
+	
+	.info{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 3px;
+		justify-content: space-evenly;
+		height: calc(15% - ((15px / 2)/2));
+
+		.luzLogo{
+			width: 80%;
+			transition: all ease .4s;
+		}
+
+		h1{
+			font-size: 20px;
+		}
+	}
+	
+	.buttons{
+		height: calc(68% - ((15px / 2)/2));
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.facoLogo{
+		width: 120%;
+		transition: all ease .4s;
+		position: relative;
+		top: 10%;
+	}
 }
 
 .ErrorPage{
@@ -76,211 +148,187 @@ body{
 	}
 }
 
-.NavBar{
-	color: white;
-	background-color: var(--moduleColor);
-	width: calc(100vw - 50px);
-	height: var(--navBarHeight);
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0px 25px;
-	border-bottom: 2px solid white;
-
-	.Buttons{
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
-
-	.Info{
-		display: flex;
-		align-items: center;
-		gap: 10px;
-
-		img{
-			width: 45px;
-		}
-	}
-}
-
 .Login{
-	width: 100vw;
-	height: 100vh;
-	background-color: var(--bgColor);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
 
 	.loginForm{
-		background-color: var(--moduleColor);
-		width: 35vw;
-		height: 50vh;
-		padding: 30px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		border-radius: var(--moduleRadius);
+		background-color: var(--bgColor);
 		color: white;
-		border: 5px solid var(--borderColor);
+		border-radius: var(--moduleRadius);
+		padding: var(--modulepPadding);
+		width: 35vw;
+		height: 50vh;
 
 		h2{margin: 10px;}
 		h1{margin: 10px}
 	}
 }
 
-.Home{
-	height: calc(100vh - 72px);
+.ErrorPage{
+	background-color: tomato;
 	width: 100vw;
+	height: 100vh;
+	margin: 0px;
 	display: flex;
-	flex-direction: row;
-	background-color: var(--bgColor);
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 
-	.emptySpace{
-		@include BasicPage;
-		
-		h1{font-size: 100px;}
+	h3{
+		margin: 0px;
+		transition: all .3s;
+		&:hover{
+			cursor: pointer;
+			transform: scale(1.1);
+			text-shadow: var(--shadow);
+		}
 	}
 }
-	.LatPanel{
-		width: 15%;
-		padding: 30px;
-		background-color: white;
-		height: calc(100% - var(--navBarHeight));
+
+.Home{
+	@include pageBasis;
+	background-image: url(./img/fondo.png);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: var(--bgColor);
+	font-size: 3rem;
+	background-size: cover;
+}
+
+.Sections{
+	@include pageBasis;
+	
+
+	.listContainer{
 		display: flex;
-		flex-direction: column;
-		gap: 20px;
-		border-right: 2px solid white; 
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 25px;
+		justify-content: center;
 
-		img{
-			width: 200px;
-			align-self: center
-		}
-	}
-
-	.Sections{
-		@include BasicPage;
-		
-
-		.listContainer{
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			gap: 25px;
-			justify-content: center;
-
-			.listItem{
-				background-color: var(--moduleColor);
-				border: 3px solid white;
-				width: 250px;
-				height: 250px;
-				border-radius: 15px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				transition: all ease .2s;
-
-				h2{font-size: 40px;}
-
-				&:hover{
-					transform: scale(1.1);
-					cursor: pointer;
-				}
-			}
-		}
-	}
-
-	.Section{
-		@include BasicPage;
-
-		.container{
-			width: 100%;
-			height: 100%;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: space-evenly;
-
-			.listItem{
-				height: 70%;
-				background-color: var(--moduleColor);
-				border: 3px solid white;
-				border-radius: 15px;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				padding: 15px;
-				transition: all ease .3s;
-
-				&:hover{
-					cursor: pointer;
-					transform: scale(1.1);
-				}
-			}
-		}
-	}
-
-	.Asignature{
-		@include BasicPage;
-		h1{margin-bottom: 0; margin-top: 5px;}
-		h2{margin: 0; margin-bottom: 15px;}
-
-		.container{
-			display: flex;
-			flex-direction: row;
-			align-items: start;
-			
-			justify-content: space-evenly;
-			width: 100%;
-			height: 90%;
-
-			.list{
-				width: 45%;
-				height: 100%;
-				background-color: var(--moduleColor);
-				padding: 10px;
-				border-radius: var(--moduleRadius);
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				overflow-y: scroll;
-				::-webkit-scrollbar{
-					width: 0px;
-				}
-
-				.listItem{
-					width: 100%;
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-					justify-content: space-around;
-					border: 3px solid white;
-					border-radius: var(--moduleRadius);
-					margin: 5px;
-				}
-			}
-		}
-	}
-
-	.CheckAsign{
-		@include BasicPage;
-
-		.infoContainer{
+		.listItem{
 			background-color: var(--moduleColor);
-			border-radius: var(--moduleRadius);
 			border: 3px solid white;
-			width: 50%;
-			height: 50%;
-			margin-top: 8%;
+			width: 250px;
+			height: 250px;
+			border-radius: 15px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all ease .2s;
+
+			h2{font-size: 40px;}
+
+			&:hover{
+				transform: scale(1.1);
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.Section{
+	@include pageBasis;
+
+	.container{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+
+		.listItem{
+			height: 70%;
+			background-color: var(--moduleColor);
+			border: 3px solid white;
+			border-radius: 15px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			padding: 15px;
+			transition: all ease .3s;
 
-
-			h2{margin: 0;}
+			&:hover{
+				cursor: pointer;
+				transform: scale(1.1);
+			}
 		}
 	}
+}
+
+.Asignature{
+	@include pageBasis;
+	h1{margin-bottom: 0; margin-top: 5px;}
+	h2{margin: 0; margin-bottom: 15px;}
+
+	.container{
+		display: flex;
+		flex-direction: row;
+		align-items: start;
+		
+		justify-content: space-evenly;
+		width: 100%;
+		height: 90%;
+
+		.list{
+			width: 45%;
+			height: 100%;
+			background-color: var(--moduleColor);
+			padding: 10px;
+			border-radius: var(--moduleRadius);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			overflow-y: scroll;
+			::-webkit-scrollbar{
+				width: 0px;
+			}
+
+			.listItem{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-around;
+				border: 3px solid white;
+				border-radius: var(--moduleRadius);
+				margin: 5px;
+			}
+		}
+	}
+}
+
+.CheckAsign{
+	@include pageBasis;
+
+	.infoContainer{
+		background-color: var(--moduleColor);
+		border-radius: var(--moduleRadius);
+		border: 3px solid white;
+		width: 50%;
+		height: 50%;
+		margin-top: 8%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+
+		h2{margin: 0;}
+	}
+}
