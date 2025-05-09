@@ -104,7 +104,7 @@ const Asignature = () => {
                             <Button variant="solid" color="danger" onClick={() => removeStudent(item)}>Retirar</Button>
                         </div>
                     ))}
-                </div>
+                </div> 
 
                 <div className="list">  
                     <h3>Alumnos disponibles</h3>

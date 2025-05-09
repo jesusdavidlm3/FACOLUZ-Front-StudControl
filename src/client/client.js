@@ -60,6 +60,11 @@ export async function getInfoByIdentification(identification){
 	return res
 }
 
+export async function verifyStudentForAssign(identification){
+	const res = await http.get(`api/verifyStudentForAssign/${identification}`, token)
+	return res
+}
+
 export async function aviableStudentsList(searchParam) {
 	const res = await http.get(`api/aviableStudentsList/${searchParam}`, token)
 	return res

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Modal, Input, Form, Select, Button, Space, InputNumber, message } from "antd";
 import * as lists from '../context/lists'
 import { appContext } from '../context/appContext';
-import { createUser, clearAllAsignatures } from '../client/client'
+import { createUser, clearAllAsignatures, verifyStudentForAssign, asignIntoAsignature } from '../client/client'
 import { encrypt } from '../functions/hash'
 import { routerContext } from '../context/routerContext';
 
@@ -129,6 +129,54 @@ export const ConfirmClearAllSections = ({open, onCancel}) => {
             ]}
         >
             <Input onChange={e => setSafeWord(e.target.value)}></Input>
+        </Modal>
+    )
+}
+
+export const AssignAstudent = ({open, onCancel, assignature, section}) => {
+
+    const [verification, setVerification] = useState(false)
+    const [disable, setDisable] = useState(false)
+    
+    const verifyData = async(e) => {
+        const res = await verifyStudentForAssign(e)
+        if(res.data[0]){
+            setVerification(res.data[0])
+            setDisable(true)
+        }
+    }
+
+    const confirmAssign = async() => {
+        const idField = document.getElementById("idField").value
+        const data = {
+                section: section,
+                asignature: assignature,
+                userId: idField,
+                role: 2
+        }
+        const res = await asignIntoAsignature(data)
+        if(res.status == 200){
+            onCancel()
+            setVerification(false)
+        }
+        console.log(res)
+    }
+
+    return(
+        <Modal
+            open = {open}
+            onCancel={() => {onCancel(); setVerification(false)}}
+            destroyOnClose
+
+            footer={[
+                <Button color='primary' variant='solid' onClick={() => confirmAssign()} disabled={!disable}>inscribir</Button>,
+                <Button color='danger' variant='solid' onClick={onCancel}>Cancelar</Button>
+            ]}
+        >
+            <Input.Search placeholder='Cedula del estudiante' onSearch={e => verifyData(e)} disabled={disable} id='idField'/>
+            { verification && <>
+                <h3>Nombre: {verification.name} {verification.lastname}</h3>
+            </> }
         </Modal>
     )
 }

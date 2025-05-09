@@ -242,32 +242,13 @@ body{
 
 .Section{
 	@include pageBasis;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-	.container{
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-evenly;
-
-		.listItem{
-			height: 70%;
-			background-color: var(--moduleColor);
-			border: 3px solid white;
-			border-radius: 15px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			padding: 15px;
-			transition: all ease .3s;
-
-			&:hover{
-				cursor: pointer;
-				transform: scale(1.1);
-			}
-		}
+	.selectors{
+		background-color: tomato;
+		width: 100%
 	}
 }
 
@@ -315,6 +296,9 @@ body{
 
 .CheckAsign{
 	@include pageBasis;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	.infoContainer{
 		background-color: var(--moduleColor);
@@ -327,8 +311,19 @@ body{
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-
+		text-align: center;
 
 		h2{margin: 0;}
 	}
+}
+
+.ManageSemester{
+	@include pageBasis;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+
+	h3{color: tomato;}
+	h1, h3{width: 55%;}
 }
