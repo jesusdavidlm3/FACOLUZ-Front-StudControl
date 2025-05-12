@@ -10,6 +10,7 @@ const ContextProvider = ({children}) => {
 	const [messageApi, contextHolder] = message.useMessage()
 	const [selectedSection, setSelectedSection] = useState()
 	const [selectedAsignature, setSelectedAsignature] = useState()
+	const [teachersList, setTeachersList] = useState([])
 
 	return(
 		<appContext.Provider value={{
@@ -22,7 +23,9 @@ const ContextProvider = ({children}) => {
 			selectedSection,
 			setSelectedSection,
 			selectedAsignature,
-			setSelectedAsignature
+			setSelectedAsignature,
+			teachersList,
+			setTeachersList
 		}} >
 			{children}
 		</appContext.Provider>
