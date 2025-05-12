@@ -15,7 +15,7 @@ const Sections = () => {
     const [currentTeacher, setCurrentteacher] = useState([])
     const [students, setStudents] = useState([])
     const [assignStudentModal, setAssignStudentModal] = useState(false)
-    const {teachersList, setTeachersList, messageApi} = useContext(appContext)
+    const {teachersList, setTeachersList, messageApi, contextHolder} = useContext(appContext)
 
     const aviableSections = ["001","002","003","004","005","006"]
     const aviableAsignatures = ["PP3", "PP4"]
@@ -40,7 +40,8 @@ const Sections = () => {
     const refreshInfo = async (asignature, section) => {
         if(!((asignature == null) || (section == null))){
             const res = await getAsignatureList(section, asignature)
-            setStudents(res.data)
+            setStudents(res.data.filter(item => item.type != 1))
+            setCurrentteacher(res.data.find(item => item.type == 1).id)
         }
     }
 
@@ -76,6 +77,7 @@ const Sections = () => {
 
     return(
         <div className="Sections">
+            {contextHolder}
             <Form className="selectors" layout="inline" style={{width: '100%', display: 'flex', alignItems: 'center'}}>
                 <Form.Item label="Seccion: " style={{width: '20vw'}}>
                     <Select 
