@@ -1,21 +1,29 @@
 import { Button } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { appContext } from "../context/appContext";
+import { ManagePeriodModal } from '../components/Modals'
 
 const ManageSemester = () => {
 
-    const [condition, setCondition] = useState(false)
+    const {startedPeriod} = useContext(appContext)
+    const [modalOpen, setModalOpen] = useState(false)
 
     return(
         <div className="ManageSemester">
-            { condition ? (<>
+            { startedPeriod ? (<>
                 <h1>El semestre actual ya se encuentra en curso, las modificaciones no estan permitidas</h1>
-                <Button color="purple" variant="solid" onClick={() => setCondition(!condition)}>Finalizar semestre</Button>
+                <Button color="purple" variant="solid" onClick={() => setModalOpen(true)}>Finalizar semestre</Button>
                 <h3>Nota: Al finalizar el semestre todas las secciones y asignaciones se vaciaran de forma automatica</h3>
             </>):(<>
                 <h1>El semestre actual aun no se encuentra en curso</h1>
-                <Button color="purple" variant="solid" onClick={() => setCondition(!condition)}>Iniciar semestre</Button>
+                <Button color="purple" variant="solid" onClick={() => setModalOpen(true)}>Iniciar semestre</Button>
                 <h3>Nota: Al iniciar el semestre no sera posible realizar modificaciones o asignaciones a las secciones</h3>
             </>) }
+
+            <ManagePeriodModal 
+                open={modalOpen}
+                onCancel={() => setModalOpen(false)}
+            />
         </div>
     )
 }

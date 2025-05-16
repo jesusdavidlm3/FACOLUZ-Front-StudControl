@@ -10,7 +10,7 @@ import Logo_LUZ from '../assets/Logo_LUZ.png'
 
 const LatPanel = () => {
     const [confirmLogout, setConfirmLogout] = useState(false)
-    const {userData} = useContext(appContext)
+    const {userData, startedPeriod} = useContext(appContext)
     const {view, setView} = useContext(routerContext)
     const [createStudentModal, setCreateStudentModal] = useState(false)
 
@@ -26,7 +26,7 @@ const LatPanel = () => {
                 <Button className='Button' size={'large'} onClick={() => setCreateStudentModal(true)} variant='solid' icon={<UserOutlined />}> <p className='invisible'>Registrar estudiante</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setView('Sections')}} variant='solid' icon={<UsergroupDeleteOutlined />}><p className='invisible'>Secciones</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setView('CheckAsign')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Consultar asignacion</p></Button>
-                <Button className='Button' size={'large'} onClick={()=>{setView('ManageSemester')}} variant='solid' icon={<ClockCircleOutlined />}><p className='invisible'>Cerrar inscripciones</p></Button> 
+                <Button className='Button' size={'large'} onClick={()=>{setView('ManageSemester')}} variant='solid' icon={<ClockCircleOutlined />}><p className='invisible'>{startedPeriod ? (<>Abrir</>):(<>Cerrar</>)} inscripciones</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setConfirmLogout(true)}} variant='solid' icon={<LogoutOutlined />} color='danger'><p className='invisible'>Cerrar sesion</p></Button> 
             </div>
 

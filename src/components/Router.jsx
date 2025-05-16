@@ -5,7 +5,6 @@ import CheckAsign from '../pages/CheckAsign'
 import ErrorPage from '../pages/ErrorPage'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
-import Section from '../pages/Section'
 import Sections from '../pages/Sections'
 import ManageSemester from "../pages/ManageSemester";
 
@@ -19,7 +18,6 @@ const Router = () => {
             case "CheckAsign": return <CheckAsign />
             case "Home": return <Home />
             case "Login": return <Login />
-            case "Section": return <Section />
             case "Sections": return <Sections />
             case "ManageSemester": return <ManageSemester/>
             default: <ErrorPage />

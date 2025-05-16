@@ -84,3 +84,13 @@ export async function asignTeacher(data){
 	const res = await http.put("api/asignTeacher", token, data)
 	return res
 }
+
+export async function getSettingsStartedPeriod(){
+	const res = await http.get("api/getSettingsStartedPeriod", token)
+	return res
+}
+
+export async function endOrStartPeriod(){
+	const res = await http.post("api/endOrStartPeriod", token)
+	return res
+}

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Modal, Input, Form, Select, Button, Space, InputNumber, message } from "antd";
 import * as lists from '../context/lists'
 import { appContext } from '../context/appContext';
-import { createUser, clearAllAsignatures, verifyStudentForAssign, asignIntoAsignature } from '../client/client'
+import { createUser, removeFromAsignature, verifyStudentForAssign, asignIntoAsignature, endOrStartPeriod } from '../client/client'
 import { encrypt } from '../functions/hash'
 import { routerContext } from '../context/routerContext';
 
@@ -96,47 +96,11 @@ export const CreateStudentModal = ({open, onCancel}) => {
     )
 }
 
-export const ConfirmClearAllSections = ({open, onCancel}) => {
-
-    const { messageApi } = useContext(appContext)
-    const [safeWord, setSafeWord] = useState("")
-
-    async function sendClear() {
-        const res = await clearAllAsignatures()
-        if(res.status == 200){
-            messageApi.open({
-                type: "success",
-                content: "Secciones limpiadas"
-            })
-            onCancel()
-        }else{
-            messageApi.open({
-                type: "error",
-                content: "ah ocurrido un error"
-            })
-        }
-    }
-
-    return(
-        <Modal
-            open={open}
-            title={`Escriba la palabra "borrar" para confirmar`}
-            destroyOnClose
-            onCancel={onCancel}
-            footer={[
-                <Button color='primary' variant='solid' disabled={safeWord != "borrar"} onClick={() => sendClear()}>Aceptar</Button>,
-                <Button color='danger' variant='solid' onClick={onCancel}>Cancelar</Button>
-            ]}
-        >
-            <Input onChange={e => setSafeWord(e.target.value)}></Input>
-        </Modal>
-    )
-}
-
-export const AssignAstudent = ({open, onCancel, assignature, section}) => {
+export const AssignAstudent = ({open, onCancel, assignature, section, update}) => {
 
     const [verification, setVerification] = useState(false)
     const [disable, setDisable] = useState(false)
+    const {messageApi} = useContext(appContext)
     
     const verifyData = async(e) => {
         const res = await verifyStudentForAssign(e)
@@ -156,10 +120,14 @@ export const AssignAstudent = ({open, onCancel, assignature, section}) => {
         }
         const res = await asignIntoAsignature(data)
         if(res.status == 200){
+            messageApi.open({
+                type: 'success',
+                content: res.data
+            })
+            update()
+            setDisable(false)
             onCancel()
-            setVerification(false)
         }
-        console.log(res)
     }
 
     return(
@@ -167,6 +135,7 @@ export const AssignAstudent = ({open, onCancel, assignature, section}) => {
             open = {open}
             onCancel={() => {onCancel(); setVerification(false)}}
             destroyOnClose
+            closable={false}
 
             footer={[
                 <Button color='primary' variant='solid' onClick={() => confirmAssign()} disabled={!disable}>inscribir</Button>,
@@ -177,6 +146,83 @@ export const AssignAstudent = ({open, onCancel, assignature, section}) => {
             { verification && <>
                 <h3>Nombre: {verification.name} {verification.lastname}</h3>
             </> }
+        </Modal>
+    )
+}
+
+export const ManagePeriodModal = ({open, onCancel}) => {
+
+    const {startedPeriod, setStartedPeriod, messageApi, contextHolder} = useContext(appContext)
+    const send = async() => {
+        const res = await endOrStartPeriod()
+        console.log(res)
+        if(res.status == 200){
+            messageApi.open({
+                type: "success",
+                content: res.data
+            })
+            setStartedPeriod(!startedPeriod)
+            onCancel()
+        }else{
+            messageApi.open({
+                type: "error",
+                content: "ah ocurrido un error"
+            })
+        }
+    }
+
+    return(
+        <Modal
+            title={startedPeriod ? (<>Abrir inscripciones?</>):(<>Cerrar inscripciones?</>)}
+            open={open}
+            onCancel={onCancel}
+            closable={false}
+            footer={[
+                <Button color='primary' variant='solid' onClick={send}>{startedPeriod ? (<>Finalizar periodo</>):(<>Comenzar Periodo</>)}</Button>,
+                <Button color='danger' variant='solid' onClick={onCancel}>Cancelar</Button>
+            ]}
+        >
+            {contextHolder}
+            {startedPeriod ? (<>
+                <h4>Nota: Al abrir inscripciones se eliminaran todas las asignaciones actuales</h4>            
+            </>):(<>
+                <h4>Nota: al cerrar inscripciones no podra hacer modificaciones a las secciones</h4>
+            </>)}
+        </Modal>
+    )
+}
+
+export const RetireStudent = ({open, onCancel, studentId, update}) => {
+
+    const {messageApi, contextHolder} = useContext(appContext)
+
+    const submitRetire = async() => {
+        const res = await removeFromAsignature(studentId)
+        if(res.status == 200){
+            messageApi.open({
+                type: "success",
+                content: "Retirado con exito"
+            })
+            update()
+            onCancel()
+        }else{
+            messageApi.open({
+                type: "error",
+                content: "ah ocurrido un error"
+            })
+        }
+    }
+
+    return(
+        <Modal
+            open={open}
+            title="Retirar de la seccion?"
+            footer={[
+                <Button variant="solid" color="primary" onClick={submitRetire}>Retirar</Button>,
+                <Button variant="solid" color="danger" onClick={onCancel}>Cancelar</Button>
+            ]}
+        >
+            {contextHolder}
         </Modal>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { appContext } from "../context/appContext";
 import { Button, Form, List, Select, Tooltip, Divider, message } from 'antd'
-import { AssignAstudent } from '../components/Modals'
+import { AssignAstudent, RetireStudent } from '../components/Modals'
 import { routerContext } from "../context/routerContext";
 import { getAsignatureList } from "../client/client";
 import { DeleteOutlined } from '@ant-design/icons'
@@ -9,13 +9,17 @@ import { aviableTeachersList, asignTeacher } from '../client/client'
 
 const Sections = () => {
 
+    const [assignStudentModal, setAssignStudentModal] = useState(false)
+    const [retireStudentModal, setRetireStudentmodal] = useState(false)
+
     const [section, setSection] = useState(null)
     const [asignature, setAsignature] = useState(null)
     const [aviableTeachers, setAviableTeachers] = useState([])
     const [currentTeacher, setCurrentteacher] = useState([])
     const [students, setStudents] = useState([])
-    const [assignStudentModal, setAssignStudentModal] = useState(false)
-    const {teachersList, setTeachersList, messageApi, contextHolder} = useContext(appContext)
+    const {teachersList, setTeachersList, messageApi, contextHolder, startedPeriod} = useContext(appContext)
+
+    const [selectedStudent, setSelectedStudent] = useState('')
 
     const aviableSections = ["001","002","003","004","005","006"]
     const aviableAsignatures = ["PP3", "PP4"]
@@ -97,13 +101,21 @@ const Sections = () => {
                     <Select
                         value={currentTeacher}
                         placeholder='Seleccione a un profesor'
-                        showSearch options={aviableTeachers}
+                        showSearch
                         onChange={e => sendAsignTeacher(e)}
                         options={teachersList}
+                        disabled={asignature == null || section == null || startedPeriod}
                     />
                 </Form.Item>
                 <Form.Item>
-                    <Button variant="solid" color="purple" onClick={() => setAssignStudentModal(true)} >Agregar alumno</Button>
+                    <Button
+                        variant="solid"
+                        color="purple"
+                        onClick={() => setAssignStudentModal(true)}
+                        disabled={asignature == null || section == null || startedPeriod}
+                    >
+                        Agregar alumno
+                    </Button>
                 </Form.Item>
             </Form>
 
@@ -113,8 +125,15 @@ const Sections = () => {
                 {students.map(item => (
                     <List.Item style={{display: "flex", justifyContent: "space-between"}}>
                         {item.name} {item.lastname}
-                        <Tooltip title="Retirar">
-                            <Button variant="solid" color="danger" icon={<DeleteOutlined />} shape="circle"/>
+                        <Tooltip title={startedPeriod ? ("Inscripcion cerrada, no se puede retirar"):("retirar")}>
+                            <Button
+                                disabled={startedPeriod}
+                                variant="solid"
+                                color="danger"
+                                icon={<DeleteOutlined />}
+                                shape="circle"
+                                onClick={() => {setRetireStudentmodal(true); setSelectedStudent(item.id)}}
+                            />
                         </Tooltip>
                     </List.Item>                
                 ))}
@@ -125,6 +144,14 @@ const Sections = () => {
                 onCancel={() => setAssignStudentModal(false)}
                 open={assignStudentModal}
                 section={section}
+                update={() => refreshInfo(section, asignature)}
+            />
+
+            <RetireStudent
+                open={retireStudentModal}
+                onCancel={() => setRetireStudentmodal(false)}
+                studentId={selectedStudent}
+                update={() => refreshInfo(section, asignature)}
             />
         </div>
     )

@@ -11,6 +11,7 @@ const ContextProvider = ({children}) => {
 	const [selectedSection, setSelectedSection] = useState()
 	const [selectedAsignature, setSelectedAsignature] = useState()
 	const [teachersList, setTeachersList] = useState([])
+	const [startedPeriod, setStartedPeriod] = useState([])
 
 	return(
 		<appContext.Provider value={{
@@ -25,7 +26,9 @@ const ContextProvider = ({children}) => {
 			selectedAsignature,
 			setSelectedAsignature,
 			teachersList,
-			setTeachersList
+			setTeachersList,
+			startedPeriod,
+			setStartedPeriod
 		}} >
 			{children}
 		</appContext.Provider>
