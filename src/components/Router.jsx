@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Sections from '../pages/Sections'
 import ManageSemester from "../pages/ManageSemester";
+import UserManagement from "../pages/UserManagement"
 
 const Router = () => {
     
@@ -20,6 +21,7 @@ const Router = () => {
             case "Login": return <Login />
             case "Sections": return <Sections />
             case "ManageSemester": return <ManageSemester/>
+            case "UserManagement": return <UserManagement/>
             default: <ErrorPage />
         }
     }catch(err){

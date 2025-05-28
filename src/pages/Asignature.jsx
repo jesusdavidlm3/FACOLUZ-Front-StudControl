@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { appContext } from '../context/appContext'
 import { Select, Input, Button, Form } from 'antd'
-import { aviableStudentsList, asignIntoAsignature, getAsignatureList, removeFromAsignature, aviableTeachersList, asignTeacher } from "../client/client";
+import { asignIntoAsignature, removeFromAsignature, aviableTeachersList, asignTeacher } from "../client/client";
 
 const Asignature = () => {
 

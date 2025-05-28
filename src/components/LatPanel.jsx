@@ -24,6 +24,7 @@ const LatPanel = () => {
             <div className='buttons'>
                 <Button className='Button' size={'large'} onClick={()=>{setView('Home')}} variant='solid' icon={<HomeOutlined />}> <p className='invisible'>Inicio</p></Button> 
                 <Button className='Button' size={'large'} onClick={() => setCreateStudentModal(true)} variant='solid' icon={<UserOutlined />}> <p className='invisible'>Registrar estudiante</p></Button> 
+                <Button className='Button' size={'large'} onClick={() => setView('UserManagement')} variant='solid' icon={<UserOutlined />}> <p className='invisible'>Gestionar usuarios</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setView('Sections')}} variant='solid' icon={<UsergroupDeleteOutlined />}><p className='invisible'>Secciones</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setView('CheckAsign')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Consultar asignacion</p></Button>
                 <Button className='Button' size={'large'} onClick={()=>{setView('ManageSemester')}} variant='solid' icon={<ClockCircleOutlined />}><p className='invisible'>{startedPeriod ? (<>Abrir</>):(<>Cerrar</>)} inscripciones</p></Button> 

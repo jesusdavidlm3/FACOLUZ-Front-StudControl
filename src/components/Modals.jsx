@@ -2,7 +2,10 @@ import React, { useContext, useState } from 'react'
 import { Modal, Input, Form, Select, Button, Space, InputNumber, message } from "antd";
 import * as lists from '../context/lists'
 import { appContext } from '../context/appContext';
-import { createUser, removeFromAsignature, verifyStudentForAssign, asignIntoAsignature, endOrStartPeriod } from '../client/client'
+import {
+    createUser, removeFromAsignature, verifyStudentForAssign, asignIntoAsignature,
+    endOrStartPeriod, deleteUser, verifyForReactivate, reactivateUser
+} from '../client/client'
 import { encrypt } from '../functions/hash'
 import { routerContext } from '../context/routerContext';
 
@@ -223,6 +226,103 @@ export const RetireStudent = ({open, onCancel, studentId, update}) => {
             ]}
         >
             {contextHolder}
+        </Modal>
+    )
+}
+
+export const DeleteStudent = ({open, onCancel, studentId}) => {
+
+    const {messageApi, contextHolder} = useContext(appContext)
+
+    const confirmDelete = async() => {
+        const res = await deleteUser(studentId)
+        if(res.status == 200){
+            messageApi.open({
+                type: "success",
+                content: "Desactivado con exito"
+            })
+            update()
+            onCancel()
+        }else{
+            messageApi.open({
+                type: "success",
+                content: "ah ocurrido un error"
+            })
+        }
+    }
+
+    return(
+        <Modal
+            open={open}
+            onCancel={onCancel}
+            closable={false}
+            title="Desactivar usuario del estudiante?"
+            footer={[
+                <Button variant='solid' color='danger' onClick={confirmDelete}>Desactivar</Button>,
+                <Button variant='solid' color='primary' onClick={onCancel}>Cancelar</Button>,
+            ]}
+        >
+            {contextHolder}
+        </Modal>
+    )
+}
+
+export const ReactivateStudent = ({open, onCancel}) => {
+
+    const [disabled, setDisabled] = useState(false)
+    const {messageApi, contextHolder} = useContext(appContext)
+    const [name, setName] = useState(false)
+
+    const verifyId = async(e) => {
+        const res = await verifyForReactivate(e)
+        console.log(res)
+        if(res.status == 200){
+            setName(`${res.data.name} ${res.data.lastname}`)
+            setDisabled(true)
+        }else{
+            messageApi.open({
+                type: "error",
+                content: res.data ? (res.data):("ah ocurrido un error")
+            })
+        }
+    }
+
+    const reactivateStudent = async() => {
+        const id = document.getElementById("idField").value
+        const res = await reactivateUser(id)
+        console.log(res)
+        if(res.status == 200){
+            messageApi.open({
+                type: "success",
+                content: "Usuario reactivado con exito"
+            })
+            onCancel()
+        }else{
+            messageApi.open({
+                type: "error",
+                content: "ah ocurrido un error"
+            })
+        }
+    }
+
+    return(
+        <Modal
+            title="Reactivar estudiante?"
+            open={open}
+            onCancel={onCancel}
+            footer={[
+                <Button variant='solid' onClick={reactivateStudent} color='primary' disabled={!disabled}>Confirmar</Button>,
+                <Button variant='solid' onClick={onCancel} color=''>Cancelar</Button>
+            ]}
+        >
+            {contextHolder}
+            <Input.Search
+                placeholder='Cedula del estudiante'
+                onSearch={e => verifyId(e)}
+                id='idField'
+                disabled={disabled}
+            />
+            {name && <h3>Reactivar usuario de: {name}</h3>}
         </Modal>
     )
 }
