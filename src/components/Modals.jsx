@@ -49,10 +49,10 @@ export const CreateStudentModal = ({open, onCancel}) => {
         setLoading(true)
         const data = {
             idType: idType,
-            idNumber: `${idNumber}`,
+            id: `${idNumber}`,
             name: name,
             lastname: lastname,
-            password: await encrypt(password),
+            passwordSHA256: await encrypt(password),
             userType: 2
         }
         const res = await createUser(data)

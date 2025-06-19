@@ -22,11 +22,6 @@ export const bloodTypeList = [
     {label: 'AB-', value: 7},
 ]
 
-export const patientTypeList = [
-    {label: 'Niño', value: 0},
-    {label: 'Adulto', value: 1}
-]
-
 export const sexList = [
     {label: 'Masculino', value: 0},
     {label: 'Femenino', value: 1}
@@ -50,7 +45,7 @@ export const raceList = [
     {label: 'Indigena', value: 3},
 ]
 
-export const alimentsList = [
+export const ailmentsList = [
     {label: 'Adenopatias', value: 0},
     {label: 'Afeccion cardiovascular', value: 1},
     {label: 'Afecciones hematologicas', value: 2},
@@ -83,4 +78,5 @@ export const userTypeList = [
     {label: 'Docente', value: 1},
     {label: 'Estudiante', value: 2},
     {label: 'Administrador de estudios', value: 3},
+    {label: 'Receptionista', value: 4},
 ]

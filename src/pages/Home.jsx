@@ -26,7 +26,7 @@ const Home = () => {
 	return(
 		<div className='Home'>
 			{ContextHolder}
-			<h1 className='purple'>Bienvenido</h1>
+			<h1>Bienvenido</h1>
 		</div>
 	)
 }
