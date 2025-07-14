@@ -144,14 +144,14 @@ const Sections = () => {
                 onCancel={() => setAssignStudentModal(false)}
                 open={assignStudentModal}
                 section={section}
-                update={() => refreshInfo(section, asignature)}
+                update={() => refreshInfo(asignature,section)}
             />
 
             <RetireStudent
                 open={retireStudentModal}
                 onCancel={() => setRetireStudentmodal(false)}
                 studentId={selectedStudent}
-                update={() => refreshInfo(section, asignature)}
+                update={() => refreshInfo(asignature,section)}
             />
         </div>
     )
