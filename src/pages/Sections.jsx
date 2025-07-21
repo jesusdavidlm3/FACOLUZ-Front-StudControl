@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { appContext } from "../context/appContext";
-import { Button, Form, List, Select, Tooltip, Divider, message } from 'antd'
+import { Button, Form, List, Select, Tooltip, Divider, message, Space } from 'antd'
 import { AssignAstudent, RetireStudent } from '../components/Modals'
 import { routerContext } from "../context/routerContext";
 import { getAsignatureList } from "../client/client";
@@ -82,46 +82,49 @@ const Sections = () => {
     return(
         <div className="Sections">
             {contextHolder}
-            <Form className="selectors" layout="inline" style={{width: '100%', display: 'flex', alignItems: 'center'}}>
-                <Form.Item label="Seccion: " style={{width: '20vw'}}>
-                    <Select 
-                        options={aviableSections.map(item => ({label: item, value: item}))}
-                        onChange={(e) => {setSection(e); refreshInfo(asignature, e)}}
-                    />
-                </Form.Item>
-                <Form.Item label="Asignatura: " style={{width: '20vw'}}>
-                    <Select
-                        options={aviableAsignatures.map(item => ({label: item, value: item}))}
-                        onChange={(e) => {setAsignature(e); refreshInfo(e, section)}}
-                    />
-                </Form.Item>
-            </Form>
-            <Form layout="inline">
-                <Form.Item label="Profesor: ">
-                    <Select
-                        value={currentTeacher}
-                        placeholder='Seleccione a un profesor'
-                        showSearch
-                        onChange={e => sendAsignTeacher(e)}
-                        options={teachersList}
-                        disabled={asignature == null || section == null || startedPeriod}
-                    />
-                </Form.Item>
-                <Form.Item>
-                    <Button
-                        variant="solid"
-                        color="purple"
-                        onClick={() => setAssignStudentModal(true)}
-                        disabled={asignature == null || section == null || startedPeriod}
-                    >
-                        Agregar alumno
-                    </Button>
-                </Form.Item>
-            </Form>
+            <Divider><h1>Secciones</h1></Divider>
+            <Space direction="vertical" align="start" style={{alignSelf: 'center'}}>
+                <Form className="selectors" layout="inline" style={{width: '100%', display: 'flex', alignItems: 'center'}}>
+                    <Form.Item label="Seccion: " style={{width: '20vw'}}>
+                        <Select 
+                            options={aviableSections.map(item => ({label: item, value: item}))}
+                            onChange={(e) => {setSection(e); refreshInfo(asignature, e)}}
+                        />
+                    </Form.Item>
+                    <Form.Item label="Asignatura: " style={{width: '20vw'}}>
+                        <Select
+                            options={aviableAsignatures.map(item => ({label: item, value: item}))}
+                            onChange={(e) => {setAsignature(e); refreshInfo(e, section)}}
+                        />
+                    </Form.Item>
+                </Form>
+                <Form layout="inline">
+                    <Form.Item label="Profesor: " style={{width: '20vw'}}>
+                        <Select
+                            value={currentTeacher}
+                            placeholder='Seleccione a un profesor'
+                            showSearch
+                            onChange={e => sendAsignTeacher(e)}
+                            options={teachersList}
+                            disabled={asignature == null || section == null || startedPeriod}
+                        />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button
+                            variant="solid"
+                            color="purple"
+                            onClick={() => setAssignStudentModal(true)}
+                            disabled={asignature == null || section == null || startedPeriod}
+                        >
+                            Agregar alumno
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Space>
 
             <Divider>Alumnos</Divider>
 
-            <List bordered>
+            <List bordered className="mainList">
                 {students.map(item => (
                     <List.Item style={{display: "flex", justifyContent: "space-between"}}>
                         {item.name} {item.lastname}

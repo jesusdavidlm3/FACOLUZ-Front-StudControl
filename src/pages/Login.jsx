@@ -48,7 +48,7 @@ const Login = () => {
 				<h1>Secretaria Docente</h1>
 				<h2>Iniciar sesion</h2>
 				<Form.Item name='id'>
-					<InputNumber placeholder='Identificacion'/>
+					<Input placeholder='Identificacion'/>
 				</Form.Item>
 				<Form.Item name='password'>
 					<Input.Password placeholder='Contraseña'/>
