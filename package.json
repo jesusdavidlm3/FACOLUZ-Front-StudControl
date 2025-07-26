@@ -1,8 +1,8 @@
 {
-  "name": "facoluz-front-studcontrol",
-  "productName": "facoluz-front-studcontrol",
+  "name": "Secretaria Docente FACOLUZ",
+  "productName": "Secretaria Docente FACOLUZ",
   "version": "1.0.0",
-  "description": "FACOLUZ-Front-StudControl",
+  "description": "Modulo de secretaria docente del sistema de gestion de clinicas FACOLUZ",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
