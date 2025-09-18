@@ -1,6 +1,6 @@
 {
-  "name": "Secretaria Docente FACOLUZ",
-  "productName": "Secretaria Docente FACOLUZ",
+  "name": "Secretaria-Docente-FACOLUZ",
+  "productName": "Secretaria-Docente-FACOLUZ",
   "version": "1.0.0",
   "description": "Modulo de secretaria docente del sistema de gestion de clinicas FACOLUZ",
   "main": ".vite/build/main.js",
@@ -32,6 +32,11 @@
     "name": "Jesus David Lozano",
     "email": "jesusdavidlozanomarin@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Samuel David Chourio",
+      "email": "chourio.samuel.24@gmail.com"
+    }],
   "license": "MIT",
   "dependencies": {
     "antd": "^5.25.1",
