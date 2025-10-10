@@ -5,6 +5,8 @@ import { encrypt } from '../functions/hash'
 import { login } from '../client/client'
 import React from 'react'
 import { routerContext } from '../context/routerContext'
+import logofaco from '../assets/Logo_FacoLuz.png'
+import logoluz from '../assets/Logo_LUZ.png'
 
 const Login = () => {
 	const {setView} = useContext(routerContext)
@@ -39,10 +41,14 @@ const Login = () => {
 		<div className='Login'>
 			{contextHolder}
 			<Form disabled={loading} className='loginForm' onFinish={submitLogin}>
+				<div className='logos'>
+					<img src={logoluz} className='logoluz'/>
+					<img src={logofaco} className='logofaco'/>
+				</div>
 				<h1>Secretaria Docente</h1>
 				<h2>Iniciar sesion</h2>
 				<Form.Item name='id'>
-					<InputNumber placeholder='Identificacion'/>
+					<Input placeholder='Identificacion'/>
 				</Form.Item>
 				<Form.Item name='password'>
 					<Input.Password placeholder='Contraseña'/>

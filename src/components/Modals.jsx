@@ -130,6 +130,7 @@ export const AssignAstudent = ({open, onCancel, assignature, section, update}) =
             update()
             setDisable(false)
             onCancel()
+            setVerification(false)
         }
     }
 

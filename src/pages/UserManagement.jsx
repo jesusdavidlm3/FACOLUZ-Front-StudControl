@@ -37,12 +37,12 @@ const UserManagement = () => {
     return(
         <div className="UserManagement">
             {contextHolder}
+            <Divider><h1>Listado de estudiantes</h1></Divider>
             <div className="searchBar">
                 <Input.Search onSearch={e => updateList(e)} placeholder='Buscar por cedula o nombre'/>
                 <Button variant='solid' color='primary' onClick={() => setReactivateModal(true)}>Reactivar usuario</Button>
             </div>
-            <Divider>Listado de estudiantes</Divider>
-            <List bordered>
+            <List bordered className='mainList'>
                 { list.map(item => (<List.Item style={{display: "flex", justifyContent: "space-between"}}>
                     {item.name} {item.lastname}
                     <Button

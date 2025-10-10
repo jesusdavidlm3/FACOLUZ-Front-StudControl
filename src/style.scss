@@ -2,7 +2,7 @@
 
 :root{
 	--bgColor: #660099;
-	--moduleColor: #ffffff;
+	--moduleColor: #dadae8;
 	--bgColorLogin: #ffffff;
 	--moduleColorLogin: #660099;
 	--listItemColor: #022C53;
@@ -11,7 +11,7 @@
 }
 
 @mixin pageBasis{
-	background-color: white;
+	background-color: var(--moduleColor);
 	margin: 20px;
 	padding: 20px;
 	width: calc(93vw - 40px);
@@ -22,6 +22,11 @@
 	align-items: center;
 	overflow-y: scroll;
 	overflow-x: hidden;
+}
+
+.mainList{
+	background-color: white;
+	width: 75%;
 }
 
 .Root{
@@ -40,7 +45,7 @@ body{
 }
 
 .LatPanel{
-	background-color: var(--moduleColor);	
+	background-color: #ffffff;	
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -74,7 +79,7 @@ body{
 	}
 
 	&:hover .luzLogo{
-		transform: scale(.6);
+		transform: scale(.3);
 	}
 
 	&:hover .facoLogo{
@@ -109,6 +114,8 @@ body{
 
 		h1{
 			font-size: 20px;
+			position: relative;
+			right: 25%;
 		}
 	}
 	
@@ -155,7 +162,8 @@ body{
 	justify-content: center;
 	width: 100vw;
 	height: 100vh;
-	background-color: white;
+	background-image: url(./assets/fondo.png);
+	background-size: cover;
 
 	.loginForm{
 		display: flex;
@@ -167,10 +175,24 @@ body{
 		border-radius: var(--moduleRadius);
 		padding: var(--modulepPadding);
 		width: 35vw;
-		height: 50vh;
+		height: 55vh;
 
-		h2{margin: 10px;}
-		h1{margin: 10px}
+		h2{margin: 0 10px 10px 10px;}
+		h1{margin: 0 10px 20px 10px}
+
+		.logos{
+			display: flex;
+			align-items: center;
+			gap: 35px;
+
+			img{width: 90px;}
+
+			.logofaco{
+				background-color: white;
+				width: 150px;
+				border-radius: 5px;
+			}
+		}
 	}
 }
 
@@ -195,22 +217,54 @@ body{
 	}
 }
 
-.Home{
+.HomePage{
 	@include pageBasis;
 	background-image: url(./assets/fondo.png);
+	background-size: cover;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	color: var(--bgColor);
-	font-size: 3rem;
+	// font-size: 3rem;
 	background-size: cover;
+	color: white;
+	padding: 20px 0;
+	scrollbar-width: none;
+
+	.BackgroundPage{
+		background-color: var(--bgColor);
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	h3{
+		width: 40%;
+	}
+
+	h1{
+		font-size: 50px;
+		margin: 0px
+	}
+
+	h4{
+		color: black;
+		position: absolute;
+		bottom: 1vh;
+	}
 }
 
 .Sections{
 	@include pageBasis;
-	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	scrollbar-width: none;
+
+	h1{margin: 0;}
 
 	.listContainer{
 		display: flex;
@@ -299,9 +353,10 @@ body{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	scrollbar-width: none;
 
 	.infoContainer{
-		background-color: var(--moduleColor);
+		background-color: white;
 		border-radius: var(--moduleRadius);
 		border: 3px solid white;
 		width: 50%;
@@ -312,6 +367,7 @@ body{
 		align-items: center;
 		justify-content: center;
 		text-align: center;
+		box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.1);
 
 		h2{margin: 0;}
 	}
@@ -323,6 +379,7 @@ body{
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+	scrollbar-width: none;
 
 	h3{color: tomato;}
 	h1, h3{width: 55%;}
@@ -330,4 +387,17 @@ body{
 
 .UserManagement{
 	@include pageBasis;
+	scrollbar-width: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+
+	h1{margin: 0;}
+
+	.searchBar{
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
 }
