@@ -6,12 +6,15 @@ import { routerContext } from "../context/routerContext";
 import { getAsignatureList } from "../client/client";
 import { DeleteOutlined } from '@ant-design/icons'
 import { aviableTeachersList, asignTeacher } from '../client/client'
+import Pagination from "../components/Pagination";
 
 const Sections = () => {
 
+    //Control de modals
     const [assignStudentModal, setAssignStudentModal] = useState(false)
     const [retireStudentModal, setRetireStudentmodal] = useState(false)
 
+    //Control de la UI
     const [section, setSection] = useState(null)
     const [asignature, setAsignature] = useState(null)
     const [aviableTeachers, setAviableTeachers] = useState([])
@@ -45,7 +48,7 @@ const Sections = () => {
         if(!((asignature == null) || (section == null))){
             const res = await getAsignatureList(section, asignature)
             setStudents(res.data.filter(item => item.type != 1))
-            setCurrentteacher(res.data.find(item => item.type == 1).id)
+            setCurrentteacher(res.data.find(item => item.type == 1) != undefined ? res.data.find(item => item.type == 1).id : null)
         }
     }
 

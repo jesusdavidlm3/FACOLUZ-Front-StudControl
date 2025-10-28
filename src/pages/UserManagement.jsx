@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { appContext } from '../context/appContext';
 import { Input, Button, Divider, List } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { DeleteStudent, ReactivateStudent } from '../components/Modals';
 import { searchByNameOrId } from '../client/client';
+import Pagination from "../components/Pagination"
 
 const UserManagement = () => {
 
@@ -12,25 +13,32 @@ const UserManagement = () => {
     const [deleteStudentModal, setDeleteStudentModal] = useState(false)
     const [selectedStudent, setSelectedStudent] = useState("")
     const [list, setList] = useState([])
+    const [page, setPage] = useState(1)
 
-    const updateList = async(e) => {
-        console.log(e)
-        const res = await searchByNameOrId(e)
-        if(res.status == 200){
-            if(res.data.length < 1){
-                messageApi.open({
-                    type: "error",
-                    content: "No se han encontrado resultados"
-                })
+    useEffect(() => {
+        getContent()
+    }, [page])
+
+    async function getContent(){
+        const searchInput = document.getElementById("searchInput").value
+        if(!searchInput == ""){
+            const res = await searchByNameOrId(searchInput, page)
+            if(res.status == 200){
+                if(res.data.length < 1){
+                    messageApi.open({
+                        type: 'error',
+                        content: 'No se han encontrado resultados'
+                    })
+                }else{
+                    setList(res.data)
+                }
             }else{
-                setList(res.data)
+                console.log(res)
+                messageApi.open({
+                    type: 'error',
+                    content: res.data ? (res.data):("ah ocurrido un error al buscar")
+                })
             }
-        }else{
-            console.log(res)
-            messageApi.open({
-                type: "error",
-                content: res.data ? (res.data):("ah ocurrido un error al buscar")
-            })
         }
     }
 
@@ -39,7 +47,7 @@ const UserManagement = () => {
             {contextHolder}
             <Divider><h1>Listado de estudiantes</h1></Divider>
             <div className="searchBar">
-                <Input.Search onSearch={e => updateList(e)} placeholder='Buscar por cedula o nombre'/>
+                <Input.Search onSearch={() => getContent()} id='searchInput' placeholder='Buscar por cedula o nombre'/>
                 <Button variant='solid' color='primary' onClick={() => setReactivateModal(true)}>Reactivar usuario</Button>
             </div>
             <List bordered className='mainList'>
@@ -54,6 +62,8 @@ const UserManagement = () => {
                     />
                 </List.Item>)) }
             </List>
+
+            <Pagination page={page} setPage={setPage}/>
 
             <DeleteStudent
                 open={deleteStudentModal}

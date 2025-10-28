@@ -66,8 +66,8 @@ export async function verifyStudentForAssign(identification){	//Verifica si un a
 	return res
 }
 
-export async function searchByNameOrId(searchParam) {			//Devuelve estudiantes segun criterio de busqueda
-	const res = await http.get(`api/searchByNameOrId/${searchParam}`, token)
+export async function searchByNameOrId(searchParam, page) {			//Devuelve estudiantes segun criterio de busqueda
+	const res = await http.get(`api/searchByNameOrId/${searchParam}/${page}`, token)
 	return res
 }
 
