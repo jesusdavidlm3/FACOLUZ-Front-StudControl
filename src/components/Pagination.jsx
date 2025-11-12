@@ -14,11 +14,14 @@ const Pagination = ({page, setPage}) => {
     }
 
     return(
-        <div className="Pagination">
-            <Button disabled={page <= 1} onClick={prevPage}>Anterior</Button>
-            <h3>{page}</h3>
-            <Button onClick={nextPage}>Siguiente</Button>
-        </div>
+        <>
+            <div className='CustomDivider'/>
+            <div className="Pagination">
+                <Button disabled={page <= 1} onClick={prevPage}>Anterior</Button>
+                <h3>{page}</h3>
+                <Button onClick={nextPage}>Siguiente</Button>
+            </div>
+        </>
     )
 }
 

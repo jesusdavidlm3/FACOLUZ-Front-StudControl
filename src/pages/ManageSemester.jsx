@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Divider } from "antd";
 import React, { useContext, useState } from "react";
 import { appContext } from "../context/appContext";
 import { ManagePeriodModal } from '../components/Modals'
@@ -10,15 +10,21 @@ const ManageSemester = () => {
 
     return(
         <div className="ManageSemester">
-            { startedPeriod ? (<>
-                <h1>El semestre actual ya se encuentra en curso, las modificaciones no estan permitidas</h1>
-                <Button color="purple" variant="solid" onClick={() => setModalOpen(true)}>Finalizar semestre</Button>
-                <h3>Nota: Al finalizar el semestre todas las secciones y asignaciones se vaciaran de forma automatica</h3>
-            </>):(<>
-                <h1>El semestre actual aun no se encuentra en curso</h1>
-                <Button color="purple" variant="solid" onClick={() => setModalOpen(true)}>Iniciar semestre</Button>
-                <h3>Nota: Al iniciar el semestre no sera posible realizar modificaciones o asignaciones a las secciones</h3>
-            </>) }
+            <Divider className="PageTitle"><h1>Manejo del periodo academico</h1></Divider>
+            
+            <div className="Content">
+                { startedPeriod ? (<>
+                    <h2>El semestre actual ya se encuentra en curso, las modificaciones no estan permitidas</h2>
+                    <Button color="purple" variant="solid" onClick={() => setModalOpen(true)}>Finalizar semestre</Button>
+                    <h3>Nota: Al finalizar el semestre todas las secciones y asignaciones se vaciaran de forma automatica</h3>
+                </>):(<>
+                    <h2>El semestre actual aun no se encuentra en curso</h2>
+                    <Button color="purple" variant="solid" onClick={() => setModalOpen(true)}>Iniciar semestre</Button>
+                    <h3>Nota: Al iniciar el semestre no sera posible realizar modificaciones o asignaciones a las secciones</h3>
+                </>) }
+            </div>
+
+            <div className="EmptyFooter"/>
 
             <ManagePeriodModal 
                 open={modalOpen}

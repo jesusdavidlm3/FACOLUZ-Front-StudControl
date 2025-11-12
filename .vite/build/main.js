@@ -487,7 +487,7 @@ const createWindow = () => {
   mainWindow.setMenuBarVisibility(false);
   mainWindow.maximize();
   {
-    mainWindow.loadURL("http://localhost:5173");
+    mainWindow.loadURL("http://localhost:5174");
   }
   mainWindow.menuBarVisible(false);
   mainWindow.maximize();

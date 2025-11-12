@@ -43,27 +43,31 @@ const UserManagement = () => {
     }
 
     return(
-        <div className="UserManagement">
+        <div className="Sections">
             {contextHolder}
-            <Divider><h1>Listado de estudiantes</h1></Divider>
+            <Divider className='PageTitle'><h1>Listado de estudiantes</h1></Divider>
             <div className="searchBar">
                 <Input.Search onSearch={() => getContent()} id='searchInput' placeholder='Buscar por cedula o nombre'/>
                 <Button variant='solid' color='primary' onClick={() => setReactivateModal(true)}>Reactivar usuario</Button>
             </div>
-            <List bordered className='mainList'>
-                { list.map(item => (<List.Item style={{display: "flex", justifyContent: "space-between"}}>
-                    {item.name} {item.lastname}
-                    <Button
-                        shape='circle'
-                        color='danger'
-                        variant='solid'
-                        icon={<DeleteOutlined/>}
-                        onClick={() => {setSelectedStudent(item.id); setDeleteStudentModal(true)}}
-                    />
-                </List.Item>)) }
-            </List>
 
-            <Pagination page={page} setPage={setPage}/>
+            <div className='listContainer Content'>
+                <List bordered className='mainList'>
+                    { list.map(item => (<List.Item style={{display: "flex", justifyContent: "space-between"}}>
+                        {item.name} {item.lastname}
+                        <Button
+                            shape='circle'
+                            color='danger'
+                            variant='solid'
+                            icon={<DeleteOutlined/>}
+                            onClick={() => {setSelectedStudent(item.id); setDeleteStudentModal(true)}}
+                        />
+                    </List.Item>)) }
+                    <Pagination page={page} setPage={setPage}/>
+                </List>
+            </div>
+
+            <div className='EmptyFooter'/>
 
             <DeleteStudent
                 open={deleteStudentModal}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input } from "antd";
+import { Divider, Input } from "antd";
 import { getInfoByIdentification } from '../client/client'
 
 const CheckInfo = () => {
@@ -14,8 +14,8 @@ const CheckInfo = () => {
 
     return(
         <div className="CheckAsign">
-            <h1 className="purple">Consultar informacion</h1>
-            <Input.Search size="large" placeholder="Ingrese cedula a consultar" id="searchParam" onSearch={e => getInfo(e)}/>
+            <Divider className="PageTitle"><h1 className="purple">Consultar informacion</h1></Divider>
+            <Input.Search className="searchBar" size="large" placeholder="Ingrese cedula a consultar" id="searchParam" onSearch={e => getInfo(e)}/>
 
             { info != null && (info.type == 1 || info.type == 2) ? (
                 <div className="infoContainer">
@@ -31,6 +31,7 @@ const CheckInfo = () => {
                     <h1>No hay informacion para mostrar</h1>
                 </div>
             ) }
+            <div className="EmptyFooter"/>
         </div>
     )
 }

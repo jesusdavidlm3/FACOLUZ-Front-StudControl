@@ -85,8 +85,8 @@ const Sections = () => {
     return(
         <div className="Sections">
             {contextHolder}
-            <Divider><h1>Secciones</h1></Divider>
-            <Space direction="vertical" align="start" style={{alignSelf: 'center'}}>
+            <Divider className="PageTitle"><h1>Secciones</h1></Divider>
+            <Space direction="vertical" align="start" style={{alignSelf: 'center', marginTop: "20px"}}>
                 <Form className="selectors" layout="inline" style={{width: '100%', display: 'flex', alignItems: 'center'}}>
                     <Form.Item label="Seccion: " style={{width: '20vw'}}>
                         <Select 
@@ -125,25 +125,27 @@ const Sections = () => {
                 </Form>
             </Space>
 
-            <Divider>Alumnos</Divider>
+            <div className="listContainer Content">
+                <List bordered className="mainList">
+                    {students.map(item => (
+                        <List.Item style={{display: "flex", justifyContent: "space-between"}}>
+                            {item.name} {item.lastname}
+                            <Tooltip title={startedPeriod ? ("Inscripcion cerrada, no se puede retirar"):("retirar")}>
+                                <Button
+                                    disabled={startedPeriod}
+                                    variant="solid"
+                                    color="danger"
+                                    icon={<DeleteOutlined />}
+                                    shape="circle"
+                                    onClick={() => {setRetireStudentmodal(true); setSelectedStudent(item.id)}}
+                                />
+                            </Tooltip>
+                        </List.Item>                
+                    ))}
+                </List>
+            </div>
 
-            <List bordered className="mainList">
-                {students.map(item => (
-                    <List.Item style={{display: "flex", justifyContent: "space-between"}}>
-                        {item.name} {item.lastname}
-                        <Tooltip title={startedPeriod ? ("Inscripcion cerrada, no se puede retirar"):("retirar")}>
-                            <Button
-                                disabled={startedPeriod}
-                                variant="solid"
-                                color="danger"
-                                icon={<DeleteOutlined />}
-                                shape="circle"
-                                onClick={() => {setRetireStudentmodal(true); setSelectedStudent(item.id)}}
-                            />
-                        </Tooltip>
-                    </List.Item>                
-                ))}
-            </List>
+            <div className="EmptyFooter" />
 
             <AssignAstudent
                 assignature={asignature}
